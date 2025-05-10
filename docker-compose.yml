@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  business_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: business_service
+    ports:
+      - "8001:8000"
+
+  client_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: client_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - business_service
